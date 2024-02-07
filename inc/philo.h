@@ -9,6 +9,14 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+
+
+# define TAKE_FORKS "has taken a fork\n"
+# define THINKING "is thinking\n"
+# define SLEEPING "is sleeping\n"
+# define EATING "is eating\n"
+# define DIED "died\n"
+
 typedef struct s_philo
 {
     struct s_data	*data;
@@ -43,13 +51,16 @@ typedef struct s_data
 int 	ft_atoi(const char *str);
 bool    init_main(t_data *data, int argc, char **argv);
 bool    start_philo(t_data  *data);
-int	get_current_time(void);
-int	ft_usleep(useconds_t time);
-int	one_philo(t_data *data);
-void *routine(void *philo_pointer);
+int	    get_current_time(void);
+int	    ft_usleep(useconds_t time);
+int	    one_philo(t_data *data);
+void    *routine(void *philo_pointer);
 void	messages(char *str, t_philo *philo);
 void	eat(t_philo *philo);
-int	ft_strcmp(char *s1, char *s2);
+int	    ft_strcmp(char *s1, char *s2);
 void	ft_exit(t_data *data);
+void	take_forks(t_philo *philo);
+void	drop_forks(t_philo *philo);
+
 
 #endif

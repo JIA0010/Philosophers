@@ -6,7 +6,7 @@
 #    By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:47:21 by yoshimurahi       #+#    #+#              #
-#    Updated: 2024/02/06 16:31:07 by yoshimurahi      ###   ########.fr        #
+#    Updated: 2024/02/07 12:58:22 by yoshimurahi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES = -I./inc -I./srcs/
 SRCS_DIR = srcs/
 OBJS_DIR = objs/
 
-SRCS = srcs/main.c srcs/init_main.c srcs/utils.c srcs/start_philo.c srcs/eat_sleep.c 
+SRCS = srcs/main.c srcs/init_main.c srcs/utils.c srcs/start_philo.c srcs/routine.c srcs/take_drop_forks.c
 OBJS		=	$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
 all: $(NAME)

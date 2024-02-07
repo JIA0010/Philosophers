@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 12:37:39 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 13:04:26 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	give_philos_the_forks(t_data *data)
 	int	i;
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
-    printf("data->forks = %p\n", data->forks);
 	if (data->forks == NULL)
 		return (false);
 	i = 0;
@@ -39,7 +38,6 @@ static bool init_philo(t_data *data)
 
     i = 0;
     data->philos = malloc(sizeof(t_philo) * data->num_of_philo);
-    printf("data->philos = %p\n", data->philos);
     if(data->philos == NULL)
         return (false);
     while(i < data->num_of_philo)
@@ -78,7 +76,6 @@ static bool init_data(t_data *data, int argc, char **argv)
     while (++i < data->num_of_philo)
 		pthread_mutex_init(&data->forks[i], NULL);
     data->tid = malloc(sizeof(pthread_t) * data->num_of_philo);
-    printf("data->tid = %p\n", data->tid);
 	if (!data->tid)
 		return (printf("error"), false);
     return (true);
@@ -87,8 +84,8 @@ static bool init_data(t_data *data, int argc, char **argv)
 bool   init_main(t_data *data, int argc, char **argv)
 {
     if(init_data(data, argc, argv) == false)
-        return (printf("Error: init_data failed"), ft_exit(data), false);
+        return (printf("error: init_data failed"), ft_exit(data), false);
     if(init_philo(data) == false)
-        return (printf("Error: init_philo failed"), ft_exit(data), false);
+        return (printf("error: init_philo failed"), ft_exit(data), false);
     return (true);
 }

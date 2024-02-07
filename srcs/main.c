@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 12:40:26 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 13:04:59 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool    check_argv(char **argv)
 				continue ;
 			}
 			if (!(argv[i][j] >= '0' || argv[i][j] <= '9'))
-				return (printf("INVALID INPUT"), false);
+				return (printf("invalid input"), false);
 			j++;
 		}
 		i++;
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     t_data data;
 
     if(argc < 5 || argc > 6)
-        return (printf("Error: wrong number of arguments\n"), 1);
+        return (printf("error: wrong number of arguments\n"), 1);
     if(check_argv(argv) == false)
         return (1);
     if(init_main(&data, argc, argv) == false)
@@ -53,8 +53,8 @@ int main(int argc, char **argv)
     return (0);
 }
 
-__attribute__((destructor))
-static void	destructor(void)
-{
-	system("leaks -q philo");
-}
+// __attribute__((destructor))
+// static void	destructor(void)
+// {
+// 	system("leaks -q philo");
+// }
