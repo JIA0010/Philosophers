@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 12:11:06 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 12:40:26 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,12 @@ int main(int argc, char **argv)
         return (1);
     if(start_philo(&data) == false)
         return (1);
+	ft_exit(&data);
     return (0);
+}
+
+__attribute__((destructor))
+static void	destructor(void)
+{
+	system("leaks -q philo");
 }

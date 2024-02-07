@@ -6,21 +6,11 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/05 13:36:55 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 12:39:28 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	clear_data(t_data	*data)
-{
-	if (data->tid)
-		free(data->tid);
-	if (data->forks)
-		free(data->forks);
-	if (data->philos)
-		free(data->philos);
-}
 
 void	ft_exit(t_data *data)
 {
@@ -34,7 +24,12 @@ void	ft_exit(t_data *data)
 	}
 	pthread_mutex_destroy(&data->write);
 	pthread_mutex_destroy(&data->lock);
-	clear_data(data);
+	if (data->tid)
+		free(data->tid);
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
 }
 
 int	ft_atoi(const char *str)

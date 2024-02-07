@@ -51,6 +51,5 @@ void	messages(char *str, t_philo *philo);
 void	eat(t_philo *philo);
 int	ft_strcmp(char *s1, char *s2);
 void	ft_exit(t_data *data);
-void	clear_data(t_data	*data);
 
 #endif
