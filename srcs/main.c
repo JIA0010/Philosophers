@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/06 16:33:05 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 12:11:06 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int main(int argc, char **argv)
         return (1);
     if(init_main(&data, argc, argv) == false)
         return (1);
-    if(data.num_of_philo == 1)
-       return(one_philo(&data));
     if(start_philo(&data) == false)
         return (1);
     return (0);

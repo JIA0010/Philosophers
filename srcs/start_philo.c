@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 12:02:17 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/07 12:14:22 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,31 +84,38 @@ void *routine(void *philo_pointer)
     return ((void *)0);
 }
 
-bool    start_philo(t_data  *data)
+void	set_monitor(t_data *data)
 {
-    int i;
     pthread_t	t0;
-    
-    i = 0;
-    data->start_time = get_current_time();
+
     if (data-> num_of_times_each_philo_must_eat > 0)
 	{
 		if (pthread_create(&t0, NULL, &monitor, &data->philos[0]))
 			return (printf("TH_ERR"), false);
 	}
-    while(i < data->num_of_philo)
+    pthread_detach(t0);
+}
+
+bool    start_philo(t_data  *data)
+{
+    int i;
+        
+    i = -1;
+    if(data->num_of_philo == 1)
+       return(one_philo(&data));
+    data->start_time = get_current_time();
+    set_monitor(data);
+    while(++i < data->num_of_philo)
     {
         if(pthread_create(&data->tid[i], NULL, &routine, (void *)&data->philos[i]))
             return (printf("error\n"), false);
         ft_usleep(1);
-        i++;
     }
-    i = 0;
-    while(i < data->num_of_philo)
+    i = -1;
+    while(++i < data->num_of_philo)
     {
        if (pthread_join(data->tid[i], NULL))
             return (printf("error\n"), false);
-        i++;
     }
     return (true);
 }
