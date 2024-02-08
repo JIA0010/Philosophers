@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 13:00:12 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/08 11:48:06 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*monitor(void *data_pointer)
 
 	philo = (t_philo *) data_pointer;
 	pthread_mutex_lock(&philo->data->write);
-	// printf("data val: %d\n", philo->data->dead);
 	pthread_mutex_unlock(&philo->data->write);
 	while (philo->data->dead == 0)
 	{
@@ -32,7 +31,15 @@ void	*monitor(void *data_pointer)
 
 int	one_philo(t_data *data)
 {
-	data->start_time = get_current_time();
+    // pthread_t    t0;
+	// data->start_time = get_current_time();
+	// if (pthread_create(&t0, NULL, &routine, &data->philos[0]))
+	// 	return (printf("error\n"), ft_exit(data), false);
+    // if (pthread_join(t0, NULL)) 
+    //     return (printf("error\n"),ft_exit(data), false);
+	// // ft_exit(data);
+	// return (0);
+    data->start_time = get_current_time();
 	if (pthread_create(&data->tid[0], NULL, &routine, &data->philos[0]))
 		return (printf("error"), ft_exit(data), false);
 	pthread_detach(data->tid[0]);

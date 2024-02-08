@@ -11,11 +11,11 @@
 
 
 
-# define TAKE_FORKS "has taken a fork\n"
-# define THINKING "is thinking\n"
-# define SLEEPING "is sleeping\n"
-# define EATING "is eating\n"
-# define DIED "died\n"
+# define TAKE_FORKS "has taken a fork"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define EATING "is eating"
+# define DIED "died"
 
 typedef struct s_philo
 {
