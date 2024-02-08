@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 12:49:01 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/08 13:23:51 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	messages(char *str, t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	if(philo->id % 2 == 0)
+		ft_usleep(200);
 	take_forks(philo);
 	pthread_mutex_lock(&philo->lock);
 	philo->eating = 1;

@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/07 13:04:26 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/08 15:30:57 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ static bool init_data(t_data *data, int argc, char **argv)
     data->time_to_die = ft_atoi(argv[2]);
     data->time_to_eat = ft_atoi(argv[3]);
     data->time_to_sleep = ft_atoi(argv[4]);
-    if(argc == 6)
-        data->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
-    else
-        data->num_of_times_each_philo_must_eat = -1;
     pthread_mutex_init(&data->lock, NULL);
     pthread_mutex_init(&data->write, NULL);
     while (++i < data->num_of_philo)
@@ -87,5 +83,10 @@ bool   init_main(t_data *data, int argc, char **argv)
         return (printf("error: init_data failed"), ft_exit(data), false);
     if(init_philo(data) == false)
         return (printf("error: init_philo failed"), ft_exit(data), false);
+    if(argc == 6)
+        data->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
+    if (data->num_of_philo <= 0 || data->num_of_philo > 200 || data->time_to_die < 0
+		|| data->time_to_eat < 0 || data->time_to_sleep < 0 || (argc == 6 && data->num_of_times_each_philo_must_eat < 0))
+		return (printf("error: invalid args\n"), ft_exit(data), false);
     return (true);
 }
