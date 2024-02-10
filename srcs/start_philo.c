@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/08 15:58:21 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 10:16:33 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool start_routine(t_data *data)
     {
         if(pthread_create(&data->tid[i], NULL, &routine, (void *)&data->philos[i]))
             return (printf("error\n"), (ft_exit(data)), false);
-        ft_usleep(1);
+        // ft_usleep(1);
         i++;
     }
     return (true);

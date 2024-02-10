@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 09:42:10 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 10:15:27 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,41 @@ int	get_current_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-// int	ft_usleep(useconds_t time)
-// {
-// 	u_int64_t	start;
-
-// 	start = get_current_time();
-// 	while ((get_current_time() - start) < time)
-// 		usleep(time / 10);
-// 	return (0);
-// }
-
-int	ft_usleep(int microseconds)
+int	ft_usleep(int time)
 {
-	int	current_time;
 	int	end_time;
 
-	end_time = -1 + microseconds / 1000;
-	while (end_time == -1 + microseconds / 1000)
-		end_time = get_current_time() + microseconds / 1000;
+	end_time = get_current_time() + time;
 	while (end_time > get_current_time())
 	{
-		current_time = get_current_time();
-		if (current_time == -1)
-			current_time = end_time;
-		usleep((end_time - current_time) / 4 * 1000);
+		usleep((end_time - get_current_time()) / 4 * 1000);
 	}
+	
+	// int	start;
+
+	// start = get_current_time();
+	// while ((get_current_time() - start) < time)
+	// 	usleep(time / 10);
 	return (0);
 }
+
+// int	ft_usleep(int microseconds)
+// {
+// 	int	current_time;
+// 	int	end_time;
+
+// 	end_time = -1 + microseconds / 1000;
+// 	while (end_time == -1 + microseconds / 1000)
+// 		end_time = get_current_time() + microseconds / 1000;
+// 	while (end_time > get_current_time())
+// 	{
+// 		current_time = get_current_time();
+// 		if (current_time == -1)
+// 			current_time = end_time;
+// 		usleep((end_time - current_time) / 4 * 1000);
+// 	}
+// 	return (0);
+// }
 
 
 int	ft_strcmp(char *s1, char *s2)

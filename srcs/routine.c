@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 09:44:32 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 10:41:31 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void *routine(void *philo_pointer)
     philo = (t_philo *) philo_pointer;
     philo->time_to_die = philo->data->time_to_die + get_current_time();
 	if(philo->id % 2 == 0)
-		ft_usleep(200);
+		ft_usleep(10);
     if (pthread_create(&philo->philo_thread, NULL, &supervisor, (void *)philo))
         return ((void *)1);
     while (philo->data->dead == 0)
