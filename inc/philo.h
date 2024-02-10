@@ -24,7 +24,7 @@ typedef struct s_philo
 	int				id;
 	int				eat_count;
 	int				eating;
-	uint64_t		time_to_die;
+	int     		time_to_die;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -35,7 +35,7 @@ typedef struct s_data
 {
     t_philo *philos;
     pthread_t		*tid;
-    uint64_t	start_time;
+    int            	start_time;
     int				dead;
     int				finished;
     int     num_of_philo;

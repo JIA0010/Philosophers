@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 10:16:33 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 12:35:53 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*monitor(void *data_pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *) data_pointer;
-	pthread_mutex_lock(&philo->data->write);
-	pthread_mutex_unlock(&philo->data->write);
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->lock);

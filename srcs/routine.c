@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 10:41:31 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 12:34:59 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	*supervisor(void *philo_pointer)
 
 void	messages(char *str, t_philo *philo)
 {
-	u_int64_t	time;
+	int	time;
 	
 	pthread_mutex_lock(&philo->data->write);
 	time = get_current_time() - philo->data->start_time;
 	if (ft_strcmp(DIED, str) == 0 && philo->data->dead == 0)
 	{
-		printf("%llu %d %s\n", time, philo->id, str);
+		printf("%d %d %s\n", time, philo->id, str);
 		philo->data->dead = 1;
 	}
 	if (!philo->data->dead)
-		printf("%llu %d %s\n", time, philo->id, str);
+		printf("%d %d %s\n", time, philo->id, str);
 	pthread_mutex_unlock(&philo->data->write);
 }
 

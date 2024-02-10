@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 10:15:27 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 12:37:26 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	get_current_time(void)
 int	ft_usleep(int time)
 {
 	int	end_time;
-
 	end_time = get_current_time() + time;
 	while (end_time > get_current_time())
 	{

@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:46:21 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 09:35:55 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/10 11:54:23 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 void	take_forks(t_philo *philo)
 {
     if (philo->data->num_of_philo > 1) {
-        // printf("gettime: %llu\n", get_current_time() - philo->data->start_time);
         pthread_mutex_lock(philo->r_fork);
         messages(TAKE_FORKS, philo);
         pthread_mutex_lock(philo->l_fork);
