@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/08 11:48:06 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/08 15:58:21 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ bool finish_routine(t_data *data)
 
 bool    start_philo(t_data  *data)
 {
-    int i;
-        
-    i = -1;
     if(data->num_of_philo == 1)
        return(one_philo(data));
     data->start_time = get_current_time();
@@ -102,7 +99,6 @@ bool    start_philo(t_data  *data)
         return (false);
     if(start_routine(data) == false)
         return false;
-    i = -1;
     if(finish_routine(data) == false)
         return (false);
     return (true);

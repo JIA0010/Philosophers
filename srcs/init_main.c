@@ -6,7 +6,7 @@
 /*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/08 15:30:57 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/08 16:17:25 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ int	give_philos_the_forks(t_data *data)
 {
 	int	i;
 
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
-	if (data->forks == NULL)
-		return (false);
-	i = 0;
 	data->philos[0].l_fork = &data->forks[0];
 	data->philos[0].r_fork = &data->forks[data->num_of_philo - 1];
 	i = 1;
@@ -39,7 +35,7 @@ static bool init_philo(t_data *data)
     i = 0;
     data->philos = malloc(sizeof(t_philo) * data->num_of_philo);
     if(data->philos == NULL)
-        return (false);
+        return (printf("error"), free(data->tid),free(data->forks), false);
     while(i < data->num_of_philo)
     {
         data->philos[i].id = i + 1;
@@ -69,11 +65,14 @@ static bool init_data(t_data *data, int argc, char **argv)
     data->time_to_sleep = ft_atoi(argv[4]);
     pthread_mutex_init(&data->lock, NULL);
     pthread_mutex_init(&data->write, NULL);
+    data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
+	if (data->forks == NULL)
+		return (printf("error"), false);
     while (++i < data->num_of_philo)
 		pthread_mutex_init(&data->forks[i], NULL);
     data->tid = malloc(sizeof(pthread_t) * data->num_of_philo);
 	if (!data->tid)
-		return (printf("error"), false);
+		return (printf("error"), free(data->forks), false);
     return (true);
 }
 
