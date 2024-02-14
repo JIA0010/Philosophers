@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/14 11:31:33 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/14 12:01:22 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static bool init_data(t_data *data, int argc, char **argv)
 
     i = -1;
     data->start_time = 0;
+    data->start = 0;
     data->dead = 0;
 	data->finished = 0;
     data->num_of_philo = ft_atoi(argv[1]);

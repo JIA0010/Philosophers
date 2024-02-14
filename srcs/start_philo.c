@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_philo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 12:35:53 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/14 13:03:13 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	one_philo(t_data *data)
 	// data->start_time = get_current_time();
 	// if (pthread_create(&t0, NULL, &routine, &data->philos[0]))
 	// 	return (printf("error\n"), ft_exit(data), false);
-    // if (pthread_join(t0, NULL)) 
+    // if (pthread_join(t0, NULL))
     //     return (printf("error\n"),ft_exit(data), false);
 	// // ft_exit(data);
 	// return (0);

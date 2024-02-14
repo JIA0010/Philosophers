@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 12:34:59 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/14 13:03:00 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*supervisor(void *philo_pointer)
 void	messages(char *str, t_philo *philo)
 {
 	int	time;
-	
+
 	pthread_mutex_lock(&philo->data->write);
 	time = get_current_time() - philo->data->start_time;
 	if (ft_strcmp(DIED, str) == 0 && philo->data->dead == 0)
@@ -65,11 +65,26 @@ void	eat(t_philo *philo)
 	drop_forks(philo);
 }
 
+void	wait_for_start(t_philo *philo)
+{
+	philo->data->start++;
+	while (philo->data->dead == 0)
+	{
+		pthread_mutex_lock(&philo->data->lock);
+		if (philo->data->start == philo->data->num_of_philo)
+		{
+			break ;
+		}
+		pthread_mutex_unlock(&philo->data->lock);
+	}
+}
+
 void *routine(void *philo_pointer)
 {
     t_philo	*philo;
 
     philo = (t_philo *) philo_pointer;
+	wait_for_start(philo);
     philo->time_to_die = philo->data->time_to_die + get_current_time();
 	if(philo->id % 2 == 0)
 		ft_usleep(10);
