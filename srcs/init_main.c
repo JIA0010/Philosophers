@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 12:37:41 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/14 11:31:33 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ bool   init_main(t_data *data, int argc, char **argv)
     if (data->num_of_philo <= 0 || data->num_of_philo > 200 || data->time_to_die < 0
 		|| data->time_to_eat < 0 || data->time_to_sleep < 0 || (argc == 6 && data->num_of_times_each_philo_must_eat < 0))
 		return (printf("error: invalid args\n"), ft_exit(data), false);
+    if(argc != 6)
+        data->num_of_times_each_philo_must_eat = -1;
     return (true);
 }
