@@ -35,7 +35,6 @@ typedef struct s_data
 {
     t_philo *philos;
     pthread_t		*tid;
-    int             start;
     int            	start_time;
     int				dead;
     int				finished;
