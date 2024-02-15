@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/14 13:03:00 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/15 11:55:45 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,16 @@ void	eat(t_philo *philo)
 	drop_forks(philo);
 }
 
-void	wait_for_start(t_philo *philo)
-{
-	philo->data->start++;
-	while (philo->data->dead == 0)
-	{
-		pthread_mutex_lock(&philo->data->lock);
-		if (philo->data->start == philo->data->num_of_philo)
-		{
-			break ;
-		}
-		pthread_mutex_unlock(&philo->data->lock);
-	}
-}
-
 void *routine(void *philo_pointer)
 {
     t_philo	*philo;
 
     philo = (t_philo *) philo_pointer;
-	wait_for_start(philo);
     philo->time_to_die = philo->data->time_to_die + get_current_time();
 	if(philo->id % 2 == 0)
 		ft_usleep(10);
-    if (pthread_create(&philo->philo_thread, NULL, &supervisor, (void *)philo))
-        return ((void *)1);
+    // // if (pthread_create(&philo->philo_thread, NULL, &supervisor, (void *)philo))
+    // //     return ((void *)1);
     while (philo->data->dead == 0)
     {
         eat(philo);

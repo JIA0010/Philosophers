@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/14 13:03:13 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/15 11:37:49 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ bool start_routine(t_data *data)
 {
     int i;
 
-    i = 0;
+    i = 0;   
     while(i < data->num_of_philo)
     {
         if(pthread_create(&data->tid[i], NULL, &routine, (void *)&data->philos[i]))
             return (printf("error\n"), (ft_exit(data)), false);
-        // ft_usleep(1);
+        usleep(1);
         i++;
     }
     return (true);
