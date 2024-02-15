@@ -6,32 +6,35 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 11:55:45 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/15 14:14:40 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*supervisor(void *philo_pointer)
+int 	supervisor(void *philo_pointer)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *) philo_pointer;
-	while (philo->data->dead == 0)
+	pthread_mutex_lock(&philo->lock);
+	if (get_current_time() >= philo->time_to_die && philo->eating == 0)
 	{
-		pthread_mutex_lock(&philo->lock);
-		if (get_current_time() >= philo->time_to_die && philo->eating == 0)
-			messages(DIED, philo);
-		if (philo->eat_count == philo->data->num_of_times_each_philo_must_eat)
-		{
-			pthread_mutex_lock(&philo->data->lock);
-			philo->data->finished++;
-			philo->eat_count++;
-			pthread_mutex_unlock(&philo->data->lock);
-		}
+		messages(DIED, philo);
 		pthread_mutex_unlock(&philo->lock);
+		return (2);
 	}
-	return ((void *)0);
+	if (philo->eat_count == philo->data->num_of_times_each_philo_must_eat)
+	{
+		pthread_mutex_lock(&philo->data->lock);
+		philo->data->finished++;
+		philo->eat_count++;
+		pthread_mutex_unlock(&philo->data->lock);
+		pthread_mutex_unlock(&philo->lock);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->lock);
+	return (0);
 }
 
 
@@ -73,16 +76,14 @@ void *routine(void *philo_pointer)
     philo->time_to_die = philo->data->time_to_die + get_current_time();
 	if(philo->id % 2 == 0)
 		ft_usleep(10);
-    // // if (pthread_create(&philo->philo_thread, NULL, &supervisor, (void *)philo))
-    // //     return ((void *)1);
     while (philo->data->dead == 0)
     {
+		if(supervisor(philo) == 2 || supervisor(philo) == 1)
+			break;
         eat(philo);
         messages(SLEEPING, philo);
 	    ft_usleep(philo->data->time_to_sleep);
         messages(THINKING, philo);
     }
-    if (pthread_join(philo->philo_thread, NULL))
-        return ((void *)1);
     return ((void *)0);
 }

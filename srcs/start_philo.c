@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 11:37:49 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/15 13:22:32 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ int	one_philo(t_data *data)
 bool	set_monitor(t_data *data)
 {
     pthread_t	t0;
-
+    
     if (data-> num_of_times_each_philo_must_eat > 0)
 	{
 		if (pthread_create(&t0, NULL, &monitor, &data->philos[0]))
             return (printf("error"), ft_exit(data), false);
 	}
+
     return (true);
 }
 
@@ -63,7 +64,7 @@ bool start_routine(t_data *data)
 {
     int i;
 
-    i = 0;   
+    i = 0;
     while(i < data->num_of_philo)
     {
         if(pthread_create(&data->tid[i], NULL, &routine, (void *)&data->philos[i]))
