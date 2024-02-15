@@ -6,20 +6,17 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 14:14:40 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/15 14:41:01 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int 	supervisor(void *philo_pointer)
+int 	supervisor(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *) philo_pointer;
-	pthread_mutex_lock(&philo->lock);
 	if (get_current_time() >= philo->time_to_die && philo->eating == 0)
 	{
+		pthread_mutex_lock(&philo->lock);
 		messages(DIED, philo);
 		pthread_mutex_unlock(&philo->lock);
 		return (2);
@@ -30,10 +27,8 @@ int 	supervisor(void *philo_pointer)
 		philo->data->finished++;
 		philo->eat_count++;
 		pthread_mutex_unlock(&philo->data->lock);
-		pthread_mutex_unlock(&philo->lock);
 		return (1);
 	}
-	pthread_mutex_unlock(&philo->lock);
 	return (0);
 }
 
@@ -85,5 +80,5 @@ void *routine(void *philo_pointer)
 	    ft_usleep(philo->data->time_to_sleep);
         messages(THINKING, philo);
     }
-    return ((void *)0);
+    return (NULL);
 }
