@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:28:23 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/16 12:24:32 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:47:32 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ int	one_philo(t_data *data)
 	pthread_t	t0;
 
 	if (pthread_create(&t0, NULL, (void *)&monitor_for_one, (void *)data))
-		return (printf("error"), ft_exit(data), false);
+		return (printf("error: pthread_create is fail"), ft_exit(data), false);
 	pthread_detach(t0);
 	data->start_time = get_current_time();
 	if (pthread_create(&t0, NULL, &routine, &data->philos[0]))
-		return (printf("error\n"), ft_exit(data), false);
+		return (printf("error: pthread_create is fail\n"), ft_exit(data),
+			false);
 	if (pthread_join(t0, NULL))
-		return (printf("error\n"), ft_exit(data), false);
+		return (printf("error: pthread_join\n"), ft_exit(data), false);
 	ft_exit(data);
 	return (0);
 }
