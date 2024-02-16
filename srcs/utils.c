@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:33:51 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:37:43 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void	ft_exit(t_data *data)
 
 int	ft_atoi(const char *str)
 {
-	int result = 0;
-	int sign = 1;
+	int	result;
+	int	sign;
 
+	result = 0;
+	sign = 1;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
-        	str++;
+		str++;
 	if (*str == '-')
 		sign = -1;
 	if (*str == '-' || *str == '+')
@@ -72,7 +74,6 @@ int	ft_usleep(int time)
 		usleep(100);
 	return (0);
 }
-
 
 int	ft_strcmp(char *s1, char *s2)
 {

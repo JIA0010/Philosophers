@@ -6,15 +6,15 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 10:54:19 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:36:30 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool    check_argv(char **argv)
+bool	check_argv(char **argv)
 {
-    int	i;
+	int	i;
 	int	j;
 
 	i = 1;
@@ -37,20 +37,20 @@ bool    check_argv(char **argv)
 	return (true);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data data;
+	t_data	data;
 
-    if(argc < 5 || argc > 6)
-        return (printf("error: wrong number of arguments\n"), 1);
-    if(check_argv(argv) == false)
-        return (1);
-    if(init_main(&data, argc, argv) == false)
-        return (1);
-    if(start_philo(&data) == false)
-        return (1);
+	if (argc < 5 || argc > 6)
+		return (printf("error: wrong number of arguments\n"), 1);
+	if (check_argv(argv) == false)
+		return (1);
+	if (init_main(&data, argc, argv) == false)
+		return (1);
+	if (start_philo(&data) == false)
+		return (1);
 	ft_exit(&data);
-    return (0);
+	return (0);
 }
 
 // __attribute__((destructor))

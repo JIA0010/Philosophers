@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:30:32 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:37:30 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,57 @@
 
 bool	set_monitor(t_data *data)
 {
-    pthread_t	t0;
+	pthread_t	t0;
 
-    if (data-> num_of_times_each_philo_must_eat > 0)
+	if (data->num_of_times_each_philo_must_eat > 0)
 	{
 		if (pthread_create(&t0, NULL, &monitor, (void *)data))
-            return (printf("error"), ft_exit(data), false);
-
-        pthread_detach(t0);
+			return (printf("error"), ft_exit(data), false);
+		pthread_detach(t0);
 	}
-    return (true);
+	return (true);
 }
 
-bool start_routine(t_data *data)
+bool	start_routine(t_data *data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < data->num_of_philo)
-    {
-        if(pthread_create(&data->tid[i], NULL, &routine, (void *)&data->philos[i]))
-            return (printf("error\n"), (ft_exit(data)), false);
-        usleep(1);
-        i++;
-    }
-    return (true);
+	i = 0;
+	while (i < data->num_of_philo)
+	{
+		if (pthread_create(&data->tid[i], NULL, &routine,
+				(void *)&data->philos[i]))
+			return (printf("error\n"), (ft_exit(data)), false);
+		usleep(1);
+		i++;
+	}
+	return (true);
 }
 
-bool finish_routine(t_data *data)
+bool	finish_routine(t_data *data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < data->num_of_philo)
-    {
-        if(pthread_join(data->tid[i], NULL))
-            return(printf("error\n"), ft_exit(data), false);
-        i++;
-    }
-    return (true);
+	i = 0;
+	while (i < data->num_of_philo)
+	{
+		if (pthread_join(data->tid[i], NULL))
+			return (printf("error\n"), ft_exit(data), false);
+		i++;
+	}
+	return (true);
 }
 
-bool    start_philo(t_data  *data)
+bool	start_philo(t_data *data)
 {
-    if(data->num_of_philo == 1)
-       return(one_philo(data));
-    data->start_time = get_current_time();
-    if(set_monitor(data) == false)
-        return (false);
-    if(start_routine(data) == false)
-        return false;
-    if(finish_routine(data) == false)
-        return (false);
-    return (true);
+	if (data->num_of_philo == 1)
+		return (one_philo(data));
+	data->start_time = get_current_time();
+	if (set_monitor(data) == false)
+		return (false);
+	if (start_routine(data) == false)
+		return (false);
+	if (finish_routine(data) == false)
+		return (false);
+	return (true);
 }

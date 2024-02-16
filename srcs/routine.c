@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:21:07 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:39:22 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ void	eat(t_philo *philo)
 	drop_forks(philo);
 }
 
-void *routine(void *philo_p)
+void	*routine(void *philo_p)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philo_p;
-    philo->time_to_die = philo->data->time_to_die + get_current_time();
-	if(philo->id % 2 == 0)
+	philo->time_to_die = philo->data->time_to_die + get_current_time();
+	if (philo->id % 2 == 0)
 		ft_usleep(10);
-    while (philo->data->dead == 0)
-    {
-        eat(philo);
-        messages(SLEEPING, philo);
-	    ft_usleep(philo->data->time_to_sleep);
-        messages(THINKING, philo);
-    }
-    return (NULL);
+	while (philo->data->dead == 0)
+	{
+		eat(philo);
+		messages(SLEEPING, philo);
+		ft_usleep(philo->data->time_to_sleep);
+		messages(THINKING, philo);
+	}
+	return (NULL);
 }
