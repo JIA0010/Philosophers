@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 12:51:21 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:53:01 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ bool	set_monitor(t_data *data)
 	pthread_t	t0;
 
 	if (pthread_create(&t0, NULL, (void *)&monitor, (void *)data))
-		return (printf("error: pthread_create is failed\n"), ft_exit(data), false);
+		return (printf("error: pthread_create is failed\n"), ft_exit(data),
+			false);
 	pthread_detach(t0);
 	return (true);
 }
@@ -31,7 +32,8 @@ bool	start_routine(t_data *data)
 	{
 		if (pthread_create(&data->tid[i], NULL, &routine,
 				(void *)&data->philos[i]))
-			return (printf("error: pthread_create is failed\n"), (ft_exit(data)), false);
+			return (printf("error: pthread_create is failed\n"),
+				(ft_exit(data)), false);
 		usleep(1);
 		i++;
 	}
@@ -46,7 +48,8 @@ bool	finish_routine(t_data *data)
 	while (i < data->num_of_philo)
 	{
 		if (pthread_join(data->tid[i], NULL))
-			return (printf("error: pthread_join is failed\n"), ft_exit(data), false);
+			return (printf("error: pthread_join is failed\n"), ft_exit(data),
+				false);
 		i++;
 	}
 	return (true);
