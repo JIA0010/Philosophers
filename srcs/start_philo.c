@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:37:30 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:28:12 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ bool	set_monitor(t_data *data)
 {
 	pthread_t	t0;
 
-	if (data->num_of_times_each_philo_must_eat > 0)
-	{
-		if (pthread_create(&t0, NULL, &monitor, (void *)data))
-			return (printf("error"), ft_exit(data), false);
-		pthread_detach(t0);
-	}
+	if (pthread_create(&t0, NULL, (void *)&monitor, (void *)data))
+		return (printf("error"), ft_exit(data), false);
+	pthread_detach(t0);
 	return (true);
 }
 
