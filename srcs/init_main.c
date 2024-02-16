@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:36:44 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:52:14 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static bool	init_philo(t_data *data)
 	i = 0;
 	data->philos = malloc(sizeof(t_philo) * data->num_of_philo);
 	if (data->philos == NULL)
-		return (printf("error"), free(data->tid), free(data->forks), false);
+		return (printf("error: malloc is failed\n"), free(data->tid),
+			free(data->forks), false);
 	while (i < data->num_of_philo)
 	{
 		data->philos[i].id = i + 1;
@@ -67,21 +68,21 @@ static bool	init_data(t_data *data, int argc, char **argv)
 	pthread_mutex_init(&data->write, NULL);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
 	if (data->forks == NULL)
-		return (printf("error"), false);
+		return (printf("error: malloc is failed\n"), false);
 	while (++i < data->num_of_philo)
 		pthread_mutex_init(&data->forks[i], NULL);
 	data->tid = malloc(sizeof(pthread_t) * data->num_of_philo);
 	if (!data->tid)
-		return (printf("error"), free(data->forks), false);
+		return (printf("error: malloc is failed\n"), free(data->forks), false);
 	return (true);
 }
 
 bool	init_main(t_data *data, int argc, char **argv)
 {
 	if (init_data(data, argc, argv) == false)
-		return (printf("error: init_data failed"), ft_exit(data), false);
+		return (printf("error: init_data failed\n"), ft_exit(data), false);
 	if (init_philo(data) == false)
-		return (printf("error: init_philo failed"), ft_exit(data), false);
+		return (printf("error: init_philo failed\n"), ft_exit(data), false);
 	if (argc == 6)
 		data->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
 	if (data->num_of_philo <= 0 || data->num_of_philo > 200
