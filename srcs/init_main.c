@@ -6,13 +6,13 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 11:56:57 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:32:34 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	give_philos_the_forks(t_data *data)
+int	assign_forks(t_data *data)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ static bool init_philo(t_data *data)
         pthread_mutex_init(&data->philos[i].lock, NULL);
         i++;
     }
-    give_philos_the_forks(data);
+    assign_forks(data);
 	return (true);
 }
 

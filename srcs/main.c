@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/08 12:39:32 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/16 10:54:19 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 bool    check_argv(char **argv)
-{   	
+{
     int	i;
 	int	j;
 

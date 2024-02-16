@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/10 12:37:26 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/16 11:33:51 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,38 +65,13 @@ int	get_current_time(void)
 
 int	ft_usleep(int time)
 {
-	int	end_time;
-	end_time = get_current_time() + time;
-	while (end_time > get_current_time())
-	{
-		usleep((end_time - get_current_time()) / 4 * 1000);
-	}
-	
-	// int	start;
+	int	start;
 
-	// start = get_current_time();
-	// while ((get_current_time() - start) < time)
-	// 	usleep(time / 10);
+	start = get_current_time();
+	while ((get_current_time() - start) < time)
+		usleep(100);
 	return (0);
 }
-
-// int	ft_usleep(int microseconds)
-// {
-// 	int	current_time;
-// 	int	end_time;
-
-// 	end_time = -1 + microseconds / 1000;
-// 	while (end_time == -1 + microseconds / 1000)
-// 		end_time = get_current_time() + microseconds / 1000;
-// 	while (end_time > get_current_time())
-// 	{
-// 		current_time = get_current_time();
-// 		if (current_time == -1)
-// 			current_time = end_time;
-// 		usleep((end_time - current_time) / 4 * 1000);
-// 	}
-// 	return (0);
-// }
 
 
 int	ft_strcmp(char *s1, char *s2)

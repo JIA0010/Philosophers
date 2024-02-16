@@ -53,7 +53,6 @@ bool    init_main(t_data *data, int argc, char **argv);
 bool    start_philo(t_data  *data);
 int	    get_current_time(void);
 int	    ft_usleep(int time);
-// int	ft_usleep(int microseconds);
 int	    one_philo(t_data *data);
 void    *routine(void *philo_pointer);
 void	messages(char *str, t_philo *philo);
@@ -62,6 +61,7 @@ int	    ft_strcmp(char *s1, char *s2);
 void	ft_exit(t_data *data);
 void	take_forks(t_philo *philo);
 void	drop_forks(t_philo *philo);
+void	*monitor(void *data_p);
 
 
 #endif

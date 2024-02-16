@@ -6,46 +6,11 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 14:43:45 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:30:32 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*monitor(void *data_pointer)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *) data_pointer;
-	while (philo->data->dead == 0)
-	{
-		pthread_mutex_lock(&philo->lock);
-		if (philo->data->finished >= philo->data->num_of_philo)
-			philo->data->dead = 1;
-		pthread_mutex_unlock(&philo->lock);
-	}
-	return ((void *)0);
-}
-
-int	one_philo(t_data *data)
-{
-    // pthread_t    t0;
-	// data->start_time = get_current_time();
-	// if (pthread_create(&t0, NULL, &routine, &data->philos[0]))
-	// 	return (printf("error\n"), ft_exit(data), false);
-    // if (pthread_join(t0, NULL))
-    //     return (printf("error\n"),ft_exit(data), false);
-	// // ft_exit(data);
-	// return (0);
-    data->start_time = get_current_time();
-	if (pthread_create(&data->tid[0], NULL, &routine, &data->philos[0]))
-		return (printf("error"), ft_exit(data), false);
-	pthread_detach(data->tid[0]);
-	while (data->dead == 0)
-		ft_usleep(0);
-	ft_exit(data);
-	return (0);
-}
 
 bool	set_monitor(t_data *data)
 {
@@ -53,12 +18,11 @@ bool	set_monitor(t_data *data)
 
     if (data-> num_of_times_each_philo_must_eat > 0)
 	{
-		if (pthread_create(&t0, NULL, &monitor, &data->philos[0]))
+		if (pthread_create(&t0, NULL, &monitor, (void *)data))
             return (printf("error"), ft_exit(data), false);
 
         pthread_detach(t0);
 	}
-
     return (true);
 }
 

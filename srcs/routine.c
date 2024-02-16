@@ -6,32 +6,11 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/15 14:41:01 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:21:07 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int 	supervisor(t_philo *philo)
-{
-	if (get_current_time() >= philo->time_to_die && philo->eating == 0)
-	{
-		pthread_mutex_lock(&philo->lock);
-		messages(DIED, philo);
-		pthread_mutex_unlock(&philo->lock);
-		return (2);
-	}
-	if (philo->eat_count == philo->data->num_of_times_each_philo_must_eat)
-	{
-		pthread_mutex_lock(&philo->data->lock);
-		philo->data->finished++;
-		philo->eat_count++;
-		pthread_mutex_unlock(&philo->data->lock);
-		return (1);
-	}
-	return (0);
-}
-
 
 void	messages(char *str, t_philo *philo)
 {
@@ -63,18 +42,16 @@ void	eat(t_philo *philo)
 	drop_forks(philo);
 }
 
-void *routine(void *philo_pointer)
+void *routine(void *philo_p)
 {
-    t_philo	*philo;
+	t_philo *philo;
 
-    philo = (t_philo *) philo_pointer;
+	philo = (t_philo *)philo_p;
     philo->time_to_die = philo->data->time_to_die + get_current_time();
 	if(philo->id % 2 == 0)
 		ft_usleep(10);
     while (philo->data->dead == 0)
     {
-		if(supervisor(philo) == 2 || supervisor(philo) == 1)
-			break;
         eat(philo);
         messages(SLEEPING, philo);
 	    ft_usleep(philo->data->time_to_sleep);

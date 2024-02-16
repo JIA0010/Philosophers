@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+         #
+#    By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:47:21 by yoshimurahi       #+#    #+#              #
-#    Updated: 2024/02/07 12:58:22 by yoshimurahi      ###   ########.fr        #
+#    Updated: 2024/02/16 11:33:06 by cjia             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCLUDES = -I./inc -I./srcs/
 SRCS_DIR = srcs/
 OBJS_DIR = objs/
 
-SRCS = srcs/main.c srcs/init_main.c srcs/utils.c srcs/start_philo.c srcs/routine.c srcs/take_drop_forks.c
+SRCS = srcs/main.c srcs/init_main.c srcs/utils.c srcs/start_philo.c srcs/routine.c srcs/take_drop_forks.c srcs/monitor.c srcs/one_philo.c
 OBJS		=	$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
 all: $(NAME)
@@ -31,7 +31,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 
 clean:
 	$(RM) -r $(OBJS_DIR)
-	
+
 fclean: clean
 	$(RM) $(NAME)
 
