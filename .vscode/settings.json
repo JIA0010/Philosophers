@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "philo.h": "c",
-        "__mutex_base": "c"
-    }
-}

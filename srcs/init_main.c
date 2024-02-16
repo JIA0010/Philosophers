@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 12:52:14 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 13:05:34 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	init_philo(t_data *data)
 	return (true);
 }
 
-static bool	init_data(t_data *data, int argc, char **argv)
+static bool	init_data(t_data *data, char **argv)
 {
 	int	i;
 
@@ -79,7 +79,7 @@ static bool	init_data(t_data *data, int argc, char **argv)
 
 bool	init_main(t_data *data, int argc, char **argv)
 {
-	if (init_data(data, argc, argv) == false)
+	if (init_data(data, argv) == false)
 		return (printf("error: init_data failed\n"), ft_exit(data), false);
 	if (init_philo(data) == false)
 		return (printf("error: init_philo failed\n"), ft_exit(data), false);
