@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:34 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/17 11:51:16 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 11:37:43 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,11 @@ int	get_current_time(void)
 
 int	ft_usleep(int time)
 {
-	int	end_time;
+	int	start;
 
-	// int	start;
-	// start = get_current_time();
-	// while ((get_current_time() - start) < time)
-	// 	usleep(100);
-	end_time = get_current_time() + time;
-	while (end_time > get_current_time())
-	{
-		usleep((end_time - get_current_time()) / 4 * 1000);
-	}
+	start = get_current_time();
+	while ((get_current_time() - start) < time)
+		usleep(100);
 	return (0);
 }
 

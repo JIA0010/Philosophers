@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/17 11:48:43 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/17 12:00:49 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,8 @@ void	*routine(void *philo_p)
 	pthread_mutex_unlock(&philo->lock);
 	if (philo->id % 2 == 0)
 		ft_usleep(10);
-	while (1)
+	while (philo->data->dead == 0)
 	{
-		pthread_mutex_lock(&philo->data->write);
-		if(philo->data->dead)
-		{
-			pthread_mutex_unlock(&philo->data->write);
-			break ;
-		}
-		pthread_mutex_unlock(&philo->data->write);
 		messages(THINKING, philo);
 		eat(philo);
 		messages(SLEEPING, philo);
