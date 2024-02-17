@@ -6,14 +6,15 @@
 #    By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:47:21 by yoshimurahi       #+#    #+#              #
-#    Updated: 2024/02/16 13:32:53 by cjia             ###   ########.fr        #
+#    Updated: 2024/02/17 10:09:22 by cjia             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc -g
 # CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -fsanitize=address
+# CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=thread
 RM = rm -f
 INCLUDES = -I./inc -I./srcs/
 SRCS_DIR = srcs/

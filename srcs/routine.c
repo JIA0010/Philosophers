@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 11:39:22 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/17 10:06:51 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ void	*routine(void *philo_p)
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_p;
+	pthread_mutex_lock(&philo->lock);
 	philo->time_to_die = philo->data->time_to_die + get_current_time();
+	pthread_mutex_unlock(&philo->lock);
 	if (philo->id % 2 == 0)
 		ft_usleep(10);
 	while (philo->data->dead == 0)
 	{
+		messages(THINKING, philo);
 		eat(philo);
 		messages(SLEEPING, philo);
 		ft_usleep(philo->data->time_to_sleep);
-		messages(THINKING, philo);
 	}
 	return (NULL);
 }
