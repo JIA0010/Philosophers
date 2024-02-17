@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:29:22 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/17 10:12:37 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/17 11:49:13 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ bool	check_dead(t_data *data, int i)
 		&& data->philos[i].eating == 0)
 	{
 		messages(DIED, &data->philos[i]);
-		pthread_mutex_unlock(&data->philos[i].lock);
+		pthread_mutex_lock(&data->write);
 		data->dead = 1;
+		pthread_mutex_unlock(&data->write);
+		pthread_mutex_unlock(&data->philos[i].lock);
 		return (true);
 	}
 	pthread_mutex_unlock(&data->philos[i].lock);
@@ -37,8 +39,10 @@ bool	check_meals(t_data *data, int i)
 		pthread_mutex_unlock(&data->philos[i].lock);
 		// return (true);
 	}
+	pthread_mutex_lock(&data->write);
 	if (data->finished >= data->num_of_philo)
 		data->dead = 1;
+	pthread_mutex_unlock(&data->write);
 	pthread_mutex_unlock(&data->philos[i].lock);
 	return (false);
 }
