@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:28:04 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/17 12:01:10 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:51:50 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_argv(char **argv)
 				j++;
 				continue ;
 			}
-			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
+			if (!(argv[i][j] >= '0' || argv[i][j] <= '9'))
 				return (printf("invalid input\n"), false);
 			j++;
 		}

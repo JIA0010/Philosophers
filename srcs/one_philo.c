@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:28:23 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/17 11:56:36 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/16 12:53:36 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	*monitor_for_one(void *data_p)
 	i = 0;
 	while (data->dead == 0)
 	{
-		pthread_mutex_lock(&data->philos[i].lock);
 		if (get_current_time() >= data->philos[i].time_to_die
 			&& data->philos[i].eating == 0)
+		{
+			pthread_mutex_lock(&data->philos[i].lock);
 			messages(DIED, &data->philos[i]);
-		pthread_mutex_unlock(&data->philos[i].lock);
+			pthread_mutex_unlock(&data->philos[i].lock);
+		}
 	}
 	return ((void *)0);
 }
