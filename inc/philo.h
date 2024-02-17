@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:38:55 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/16 11:38:58 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/17 13:14:31 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_times_each_philo_must_eat;
+	pthread_mutex_t dead_lock;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
 	pthread_mutex_t	*forks;
