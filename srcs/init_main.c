@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/16 12:52:14 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/17 16:59:03 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static bool	init_data(t_data *data, int argc, char **argv)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	pthread_mutex_init(&data->lock, NULL);
 	pthread_mutex_init(&data->write, NULL);
+	pthread_mutex_init(&data->dead_lock, NULL);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
 	if (data->forks == NULL)
 		return (printf("error: malloc is failed\n"), false);
