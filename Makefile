@@ -6,13 +6,13 @@
 #    By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:47:21 by yoshimurahi       #+#    #+#              #
-#    Updated: 2024/02/20 14:44:58 by yoshimurahi      ###   ########.fr        #
+#    Updated: 2024/02/20 18:43:53 by yoshimurahi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc -g
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -fsanitize=thread
 RM = rm -f
 INCLUDES = -I./inc -I./srcs/
