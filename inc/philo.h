@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:38:55 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/16 11:38:58 by cjia             ###   ########.fr       */
+/*   Updated: 2024/02/21 09:52:16 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void				ft_exit(t_data *data);
 void				take_forks(t_philo *philo);
 void				drop_forks(t_philo *philo);
 void				*monitor(void *data_p);
-
+bool				check_meals(t_data *data, int i);
+bool				check_dead(t_data *data, int i);
 #endif
