@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/20 17:34:39 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/21 09:32:03 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*routine(void *philo_p)
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->lock);
-		if(philo->data->dead)
+		if (philo->data->dead)
 		{
 			pthread_mutex_unlock(&philo->data->lock);
 			return (NULL);

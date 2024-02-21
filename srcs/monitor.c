@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:29:22 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/20 17:32:25 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/21 09:31:51 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*monitor(void *data_p)
 	{
 		i = 0;
 		pthread_mutex_lock(&data->lock);
-		if(data->dead == 1)
+		if (data->dead == 1)
 		{
 			pthread_mutex_unlock(&data->lock);
 			return ((void *)0);

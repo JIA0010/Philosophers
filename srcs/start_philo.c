@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_philo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/20 14:37:08 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/02/21 09:32:15 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ bool	start_routine(t_data *data)
 				(void *)&data->philos[i]))
 			return (printf("error: pthread_create is failed\n"),
 				(ft_exit(data)), false);
-		// usleep(1);
 		i++;
 	}
 	return (true);
