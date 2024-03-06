@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:05:07 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/21 09:32:15 by cjia             ###   ########.fr       */
+/*   Updated: 2024/03/06 14:43:44 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ bool	start_routine(t_data *data)
 	i = 0;
 	while (i < data->num_of_philo)
 	{
+		pthread_mutex_lock(&data->lock);
+		data->philos[i].time_to_die = get_current_time() + data->time_to_die;
+		pthread_mutex_unlock(&data->lock);
 		if (pthread_create(&data->tid[i], NULL, &routine,
 				(void *)&data->philos[i]))
 			return (printf("error: pthread_create is failed\n"),

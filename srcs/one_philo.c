@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:28:23 by cjia              #+#    #+#             */
-/*   Updated: 2024/02/21 10:12:01 by cjia             ###   ########.fr       */
+/*   Updated: 2024/03/06 14:36:18 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	one_philo(t_data *data)
 {
 	pthread_t	t0;
 
+	data->philos[0].time_to_die = get_current_time() + data->time_to_die;
 	if (pthread_create(&t0, NULL, (void *)&monitor_for_one, (void *)data))
 		return (printf("error: pthread_create is failed\n"), ft_exit(data),
 			false);

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+         #
+#    By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 16:47:21 by yoshimurahi       #+#    #+#              #
-#    Updated: 2024/02/20 18:43:53 by yoshimurahi      ###   ########.fr        #
+#    Updated: 2024/03/06 14:36:32 by cjia             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -fsanitize=thread
+CFLAGS += -fsanitize=address
 RM = rm -f
 INCLUDES = -I./inc -I./srcs/
 SRCS_DIR = srcs/

@@ -6,7 +6,7 @@
 /*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 10:55:40 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/21 09:32:03 by cjia             ###   ########.fr       */
+/*   Updated: 2024/03/06 14:43:19 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,30 @@ void	eat(t_philo *philo)
 	philo->time_to_die = get_current_time() + philo->data->time_to_die;
 	pthread_mutex_unlock(&philo->data->lock);
 	messages(EATING, philo);
+	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_lock(&philo->data->lock);
 	philo->eat_count++;
 	philo->eating = 0;
 	pthread_mutex_unlock(&philo->data->lock);
-	ft_usleep(philo->data->time_to_eat);
 	drop_forks(philo);
+}
+
+static int	calc_meal_time(t_philo *philo)
+{
+	int	n;
+	int	id;
+	int	k;
+	int	unit;
+
+	n = philo->data->num_of_philo;
+	if (n == 1)
+		return (philo->data->start_time);
+	id = philo->id;
+	k = n / 2;
+	unit = philo->data->time_to_eat / k;
+	if (unit == 0)
+		unit = 1;
+	return (philo->data->start_time + unit * ((id * k) % n));
 }
 
 void	*routine(void *philo_p)
@@ -49,10 +67,13 @@ void	*routine(void *philo_p)
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_p;
-	if (philo->id % 2 == 0)
-		ft_usleep(10);
+	pthread_mutex_lock(&philo->data->lock);
+	philo->time_to_die = get_current_time() + philo->data->time_to_die;
+	pthread_mutex_unlock(&philo->data->lock);
 	while (1)
 	{
+		messages(THINKING, philo);
+		ft_usleep(calc_meal_time(philo) - get_current_time());
 		pthread_mutex_lock(&philo->data->lock);
 		if (philo->data->dead)
 		{
@@ -63,7 +84,6 @@ void	*routine(void *philo_p)
 		eat(philo);
 		messages(SLEEPING, philo);
 		ft_usleep(philo->data->time_to_sleep);
-		messages(THINKING, philo);
 	}
 	return (NULL);
 }

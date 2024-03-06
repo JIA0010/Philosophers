@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
+/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/02/20 18:44:35 by yoshimurahi      ###   ########.fr       */
+/*   Updated: 2024/03/06 14:20:52 by cjia             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static bool	init_philo(t_data *data)
 	i = 0;
 	data->philos = malloc(sizeof(t_philo) * data->num_of_philo);
 	if (data->philos == NULL)
-		return (printf("error: malloc is failed\n"), free(data->tid),
-			free(data->forks), false);
+		return (printf("error: malloc is failed\n"), false);
 	while (i < data->num_of_philo)
 	{
 		data->philos[i].id = i + 1;
@@ -73,7 +72,7 @@ static bool	init_data(t_data *data, char **argv)
 		pthread_mutex_init(&data->forks[i], NULL);
 	data->tid = malloc(sizeof(pthread_t) * data->num_of_philo);
 	if (!data->tid)
-		return (printf("error: malloc is failed\n"), free(data->forks), false);
+		return (printf("error: malloc is failed\n"), false);
 	return (true);
 }
 
