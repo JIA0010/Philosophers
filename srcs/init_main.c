@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjia <cjia@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: yoshimurahiro <yoshimurahiro@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:36:33 by yoshimurahi       #+#    #+#             */
-/*   Updated: 2024/03/06 14:20:52 by cjia             ###   ########.fr       */
+/*   Updated: 2024/03/13 10:17:47 by yoshimurahi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ bool	init_main(t_data *data, int argc, char **argv)
 	if (argc == 6)
 		data->num_of_times_each_philo_must_eat = ft_atoi(argv[5]);
 	if (data->num_of_philo <= 0 || data->num_of_philo > 200
-		|| data->time_to_die < 0 || data->time_to_eat < 0
-		|| data->time_to_sleep < 0 || (argc == 6
+		|| data->time_to_die <= 0 || data->time_to_eat <= 0
+		|| data->time_to_sleep <= 0 || (argc == 6
 			&& data->num_of_times_each_philo_must_eat < 0))
 		return (printf("error: invalid args\n"), ft_exit(data), false);
 	if (argc != 6)
